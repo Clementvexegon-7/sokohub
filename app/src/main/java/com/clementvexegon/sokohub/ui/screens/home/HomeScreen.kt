@@ -46,7 +46,11 @@ import com.clementvexegon.sokohub.ui.theme.Blueberry
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun Home(){
+
+
+
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -210,11 +214,14 @@ fun HomeScreen() {
             }
         }
         //End of Row
+
+
+
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
-    HomeScreen()
+fun HomePreview(){
+    Home()
 }

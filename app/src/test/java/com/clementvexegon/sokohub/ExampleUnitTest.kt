@@ -1,4 +1,4 @@
-package com.sharleen.sokohub
+package com.clementvexegon.sokohub
 
 import org.junit.Test
 
