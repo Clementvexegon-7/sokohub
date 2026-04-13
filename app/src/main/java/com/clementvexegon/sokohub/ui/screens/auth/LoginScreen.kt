@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,6 +43,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.clementvexegon.sokohub.R
+import com.clementvexegon.sokohub.navigation.ROUT_HOME
+import com.clementvexegon.sokohub.navigation.ROUT_LOGIN
+import com.clementvexegon.sokohub.navigation.ROUT_REGISTER
 import com.clementvexegon.sokohub.ui.theme.Blueberry
 
 @Composable
@@ -51,7 +55,7 @@ fun LoginScreen(navController: NavController){
         modifier = Modifier.fillMaxSize().paint(painter = painterResource(R.drawable.img), contentScale = ContentScale.FillBounds),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ){
+    ) {
 
         Image(
             painter = painterResource(R.drawable.products),
@@ -109,7 +113,7 @@ fun LoginScreen(navController: NavController){
             visualTransformation = PasswordVisualTransformation(),
 
 
-        )
+            )
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -123,11 +127,65 @@ fun LoginScreen(navController: NavController){
             Text(text = "Login")
         }
 
-        Text(
-            text = "Don't have an Acoount?  Register",
-            fontSize = 15.sp,
+        Spacer(modifier = Modifier.height(20.dp))
 
-            )
+        TextButton(onClick = { navController.navigate(ROUT_REGISTER) }) {
+
+
+            Text(
+                text = "Don't have an Acoount?  Register",
+                fontSize = 15.sp,
+
+                )
+
+
+        }
+
+        TextButton(onClick = { navController.navigate(ROUT_HOME) }) {
+
+
+            Text(
+                text = "Go to Home",
+                fontSize = 15.sp,
+
+                )
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

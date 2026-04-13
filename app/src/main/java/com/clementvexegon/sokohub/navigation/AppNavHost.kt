@@ -10,14 +10,17 @@ import com.clementvexegon.sokohub.ui.screens.about.AboutScreen
 import com.clementvexegon.sokohub.ui.screens.auth.LoginScreen
 import com.clementvexegon.sokohub.ui.screens.auth.RegisterScreen
 import com.clementvexegon.sokohub.ui.screens.home.HomeScreen
+import com.clementvexegon.sokohub.ui.screens.intent.IntentScreen
 import com.clementvexegon.sokohub.ui.screens.onboarding.OnboardingScreen
+import com.clementvexegon.sokohub.ui.screens.scaffold.ScaffoldScreen
 import com.clementvexegon.sokohub.ui.screens.service.ServiceScreen
+import com.clementvexegon.sokohub.ui.screens.splash.SplashScreen
 
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_HOME
+    startDestination: String = ROUT_SPLASH
 ) {
 
     NavHost(
@@ -46,6 +49,18 @@ fun AppNavHost(
 
         composable(ROUT_SERVICE) {
             ServiceScreen(navController)
+        }
+
+        composable(ROUT_INTENT) {
+            IntentScreen(navController)
+        }
+
+        composable(ROUT_SPLASH) {
+            SplashScreen(navController)
+        }
+
+        composable(ROUT_SCAFFOLD) {
+            ScaffoldScreen(navController)
         }
 
 

@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.clementvexegon.sokohub.R
 import com.clementvexegon.sokohub.navigation.ROUT_HOME
+import com.clementvexegon.sokohub.navigation.ROUT_REGISTER
 import com.clementvexegon.sokohub.ui.theme.Blueberry
 
 @Composable
@@ -77,7 +78,7 @@ fun OnboardingScreen(navController: NavController){
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = { navController.navigate(ROUT_HOME) },
+            onClick = { navController.navigate(ROUT_REGISTER) },
             colors = ButtonDefaults.buttonColors(Blueberry),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.width(350.dp)
