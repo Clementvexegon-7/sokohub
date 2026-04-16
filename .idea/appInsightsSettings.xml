@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.clementvexegon.sokohub" />
+                  <option name="mobileSdkAppId" value="1:947312589485:android:864094c8866cb6778ea424" />
+                  <option name="projectId" value="sokohub-e33e5" />
+                  <option name="projectNumber" value="947312589485" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

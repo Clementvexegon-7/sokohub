@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.clementvexegon.sokohub.navigation.ROUT_HOME
+import com.clementvexegon.sokohub.navigation.ROUT_INTENT
 import com.clementvexegon.sokohub.ui.theme.Blueberry
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,19 +72,19 @@ fun ScaffoldScreen(navController: NavController){
                 containerColor = Blueberry
             ){
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White) },
                     label = { Text("Home") },
                     selected = selectedIndex == 0,
                     onClick = { selectedIndex = 0
-                        //navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
+                    label = { Text("Intent") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        // navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_INTENT)
                     }
                 )
                 NavigationBarItem(
@@ -124,9 +126,6 @@ fun ScaffoldScreen(navController: NavController){
 
 
                 //Main Contents of the page
-                Text(text = "Welcome to Homescreen Screen", fontSize = 20.sp)
-                Spacer(modifier = Modifier.height(8.dp))
-                Text("This is where the main content goes.")
 
 
 
