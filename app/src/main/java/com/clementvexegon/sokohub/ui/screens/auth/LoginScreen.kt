@@ -33,6 +33,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -43,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.clementvexegon.sokohub.R
+import com.clementvexegon.sokohub.data.AuthViewModel
 import com.clementvexegon.sokohub.navigation.ROUT_HOME
 import com.clementvexegon.sokohub.navigation.ROUT_LOGIN
 import com.clementvexegon.sokohub.navigation.ROUT_REGISTER
@@ -103,7 +106,7 @@ fun LoginScreen(navController: NavController){
             modifier = Modifier.width(350.dp),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             placeholder = { Text(text = "Enter Password") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Blueberry,
                 focusedTextColor = Color.Black,
@@ -117,8 +120,15 @@ fun LoginScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(20.dp))
 
+        val context = LocalContext.current
+        val authViewModel = if (LocalInspectionMode.current) null else AuthViewModel(navController, context)
+
         Button(
-            onClick = {},
+            onClick = {
+
+                authViewModel?.login(email, password)
+
+            },
             colors = ButtonDefaults.buttonColors(Blueberry),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.width(150.dp)
@@ -133,7 +143,7 @@ fun LoginScreen(navController: NavController){
 
 
             Text(
-                text = "Don't have an Acoount?  Register",
+                text = "Don't have an Account?  Register",
                 fontSize = 15.sp,
 
                 )

@@ -12,6 +12,7 @@ import com.clementvexegon.sokohub.ui.screens.auth.RegisterScreen
 import com.clementvexegon.sokohub.ui.screens.home.HomeScreen
 import com.clementvexegon.sokohub.ui.screens.intent.IntentScreen
 import com.clementvexegon.sokohub.ui.screens.onboarding.OnboardingScreen
+import com.clementvexegon.sokohub.ui.screens.payment.PaymentScreen
 import com.clementvexegon.sokohub.ui.screens.scaffold.ScaffoldScreen
 import com.clementvexegon.sokohub.ui.screens.service.ServiceScreen
 import com.clementvexegon.sokohub.ui.screens.splash.SplashScreen
@@ -61,6 +62,10 @@ fun AppNavHost(
 
         composable(ROUT_SCAFFOLD) {
             ScaffoldScreen(navController)
+        }
+
+        composable(ROUT_ITEM) {
+            PaymentScreen(navController)
         }
 
 

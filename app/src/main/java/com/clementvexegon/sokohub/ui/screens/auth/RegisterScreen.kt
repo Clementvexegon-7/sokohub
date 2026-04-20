@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -39,14 +41,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.clementvexegon.sokohub.R
+import com.clementvexegon.sokohub.data.AuthViewModel
 import com.clementvexegon.sokohub.navigation.ROUT_LOGIN
 import com.clementvexegon.sokohub.ui.theme.Blueberry
 
 @Composable
 fun RegisterScreen(navController: NavController) {
+
+    val context = LocalContext.current
+    val authViewModel = if (LocalInspectionMode.current) null else AuthViewModel(navController, context)
 
     Column(
         modifier = Modifier.fillMaxSize().paint(painter = painterResource(R.drawable.img), contentScale = ContentScale.FillBounds),
@@ -76,7 +81,7 @@ fun RegisterScreen(navController: NavController) {
         var username by remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
-        var cornfirmpassword by remember { mutableStateOf("") }
+        var confirmpassword by remember { mutableStateOf("") }
 
         //Username
 
@@ -123,7 +128,7 @@ fun RegisterScreen(navController: NavController) {
             modifier = Modifier.width(350.dp),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             placeholder = { Text(text = "Enter Password") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Blueberry,
                 focusedTextColor = Color.Black,
@@ -137,8 +142,8 @@ fun RegisterScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
-            value = cornfirmpassword,
-            onValueChange = { cornfirmpassword = it },
+            value = confirmpassword,
+            onValueChange = { confirmpassword = it },
             modifier = Modifier.width(350.dp),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             placeholder = { Text(text = "Confirm Password") },
@@ -148,17 +153,27 @@ fun RegisterScreen(navController: NavController) {
                 focusedTextColor = Color.Black,
                 unfocusedLeadingIconColor = Blueberry
 
-            )
+            ),
+            visualTransformation = PasswordVisualTransformation(),
 
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
+
         Button(
-            onClick = {},
+            onClick = {
+
+               
+                authViewModel?.signup(username, email, password,confirmpassword)
+
+            },
+            modifier = Modifier
+                .width(150.dp),
+
             colors = ButtonDefaults.buttonColors(Blueberry),
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.width(150.dp)
+
 
         ) {
             Text(text = "Register")
@@ -170,7 +185,7 @@ fun RegisterScreen(navController: NavController) {
 
 
             Text(
-                text = "Already have an Acoount?  Login",
+                text = "Already have an Account?  Login",
                 fontSize = 15.sp,
 
                 )
