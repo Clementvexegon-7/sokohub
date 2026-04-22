@@ -84,5 +84,19 @@ class AuthViewModel(var navController: NavController, var context: Context) {
         navController.navigate(ROUT_HOME)
     }
 
+    fun forgotPassword(email: String) {
+        if (email.isBlank()) {
+            Toast.makeText(context, "Please enter your email", Toast.LENGTH_SHORT).show()
+        } else {
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(context, "Password reset email sent", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     fun isLoggedIn(): Boolean = mAuth.currentUser != null
 }
